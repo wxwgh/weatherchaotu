@@ -1,0 +1,9 @@
+.text_hover_color{
+	color:#409EFF;
+}
+.mapCursor{
+	cursor:default;
+}
+.mapUnCursor{
+	cursor:grab;
+}
