@@ -147,10 +147,6 @@
 		height: 100%;
 		width: 100%;
 		position:relative;
-		// display: flex;
-		// flex-direction: column;
-		// flex-wrap: nowrap;
-		// justify-content: flex-start;
 	}
 	
 	.el-loading-spinner .el-loading-text{

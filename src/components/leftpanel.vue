@@ -109,34 +109,176 @@
 					}
 				}
 				if (type === "人员通信装备信息") {
-					this.axios({
-						method: "post",
-						url: post.url,
-						data: post.data,
-					}).then(function(result) {
-						var temp_datas = $this.get_temp_data(result.data.data);
-						//根据数据创建marker
-						for (let i = 0; i < temp_datas.length; i++) {
-							var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
-							$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
-								temp_config,"人员通信装备信息","");
-						}
-					})
+					var data = [
+						{
+							"经度": 117.66,
+							"纬度": 40.11,
+							"通信消防员": 2,
+							"通信干部": 2,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 3,
+							"北斗卫星设备": 3,
+							"无人机": 3,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队"
+						},
+						{
+							"经度": 117.66,
+							"纬度": 40.11,
+							"通信消防员": 12,
+							"通信干部": 2,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 3,
+							"北斗卫星设备": 3,
+							"无人机": 3,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队"
+						},
+						{
+							"经度": 117.84,
+							"纬度": 39.33,
+							"通信消防员": 4,
+							"通信干部": 1,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 4,
+							"北斗卫星设备": 6,
+							"无人机":7,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队"
+						},
+						{
+							"经度": 117.84,
+							"纬度": 39.33,
+							"通信消防员": 1,
+							"通信干部": 1,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 4,
+							"北斗卫星设备": 6,
+							"无人机":7,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队"
+						},
+					]
+					var temp_datas = $this.get_temp_data(data);
+					//根据数据创建marker
+					for (let i = 0; i < temp_datas.length; i++) {
+						var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
+						$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
+							temp_config,"人员通信装备信息","");
+					}
+					// this.axios({
+					// 	method: "post",
+					// 	url: post.url,
+					// 	data: post.data,
+					// }).then(function(result) {
+					// 	var temp_datas = $this.get_temp_data(result.data.data);
+					// 	//根据数据创建marker
+					// 	for (let i = 0; i < temp_datas.length; i++) {
+					// 		var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
+					// 		$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
+					// 			temp_config,"人员通信装备信息","");
+					// 	}
+					// })
 
 				} else if (type === "单位驻地信息") {
-					this.axios({
-						method: "post",
-						url: post.url,
-						data: post.data,
-					}).then(function(result) {
-						var temp_datas = $this.get_temp_data(result.data.data);
-						//根据数据创建marker
-						for (let i = 0; i < temp_datas.length; i++) {
-							var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
-							$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
-								temp_config, "单位驻地信息","");
-						}
-					})
+					var data = [
+						{
+							"经度": 117.66,
+							"纬度": 40.11,
+							"通信消防员": 2,
+							"通信干部": 2,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 3,
+							"北斗卫星设备": 3,
+							"无人机": 3,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队",
+							"地址": "新疆省某区",
+						},
+						{
+							"经度": 117.66,
+							"纬度": 40.11,
+							"通信消防员": 12,
+							"通信干部": 2,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 3,
+							"北斗卫星设备": 3,
+							"无人机": 3,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队",
+							"地址": "新疆省某区",
+						},
+						{
+							"经度": 117.84,
+							"纬度": 39.33,
+							"通信消防员": 4,
+							"通信干部": 1,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 4,
+							"北斗卫星设备": 6,
+							"无人机":7,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队",
+							"地址": "新疆省某区",
+						},
+						{
+							"经度": 117.84,
+							"纬度": 39.33,
+							"通信消防员": 1,
+							"通信干部": 1,
+							"卫星便携站": 2,
+							"超短波设备": 2,
+							"短波设备": 3,
+							"卫星电话": 4,
+							"北斗卫星设备": 6,
+							"无人机":7,
+							"总队":"某总队",
+							"支队":"某支队",
+							"大队":"某大队",
+							"地址": "新疆省某区",
+						},
+					]
+					var temp_datas = $this.get_temp_data(data);
+					//根据数据创建marker
+					for (let i = 0; i < temp_datas.length; i++) {
+						var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
+						$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
+							temp_config, "单位驻地信息","");
+					}
+					// this.axios({
+					// 	method: "post",
+					// 	url: post.url,
+					// 	data: post.data,
+					// }).then(function(result) {
+					// 	var temp_datas = $this.get_temp_data(result.data.data);
+					// 	//根据数据创建marker
+					// 	for (let i = 0; i < temp_datas.length; i++) {
+					// 		var temp_config = $this.get_right_config(temp_datas[i], type,post.name);
+					// 		$this.myCommon.create_marker([temp_datas[i][0].纬度, temp_datas[i][0].经度], post.icon_url,
+					// 			temp_config, "单位驻地信息","");
+					// 	}
+					// })
 				} else if (type === "在线人员位置") {
 					var data = {
 						"lhappid": "5e5c673ee4b07d0df76eae6e",
@@ -176,49 +318,62 @@
 						}
 					})
 				} else if (type === "无人机轨迹") {
-					// var datas=[
-					// 	{
-					// 		longtitude: "104.0719267",
-					// 		latitude: "30.59067777",
-					// 		height: "100米",
-					// 		createDate: "2021-5-21",
-					// 	},
-					// 	{
-					// 		longtitude: "126.67778",
-					// 		latitude: "45.74472",
-					// 		height: "200米",
-					// 		createDate: "2021-11-21",
-					// 	},
-					// ]
-					// for (let i = 0; i < datas.length; i++) {
-					// 	var temp_config = $this.get_right_config(datas[i], type,post.name);
-					// 	$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
-					// 		post.icon_url, temp_config, "无人机轨迹","");
-					// }
-					this.axios({
-						method: "get",
-						url: post.url,
-					}).then(function(result) {
-						var datas = result.data.data;
-						for (let i = 0; i < datas.length; i++) {
-							var temp_config = $this.get_right_config(datas[i], type,post.name);
-							$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
-								post.icon_url, temp_config, "无人机轨迹","");
-						}
-					})
+					var datas=[
+						{
+							longtitude: "104.0719267",
+							latitude: "30.59067777",
+							height: "100米",
+							createDate: "2021-5-21",
+						},
+						{
+							longtitude: "126.67778",
+							latitude: "45.74472",
+							height: "200米",
+							createDate: "2021-9-27",
+						},
+					]
+					for (let i = 0; i < datas.length; i++) {
+						var temp_config = $this.get_right_config(datas[i], type,post.name);
+						$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
+							post.icon_url, temp_config, "无人机轨迹","");
+					}
+					// this.axios({
+					// 	method: "get",
+					// 	url: post.url,
+					// }).then(function(result) {
+					// 	var datas = result.data.data;
+					// 	for (let i = 0; i < datas.length; i++) {
+					// 		var temp_config = $this.get_right_config(datas[i], type,post.name);
+					// 		$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
+					// 			post.icon_url, temp_config, "无人机轨迹","");
+					// 	}
+					// })
 				} else if (type === "无人机火场态势") {
-					this.axios({
-						method: "get",
-						url: post.url,
-					}).then(function(result) {
-						var datas = result.data.data;
-						for (let i = 0; i < datas.length; i++) {
-							var temp_config = $this.get_right_config(datas[i], type,post.name);
-							$this.myCommon.create_marker([temp_config.attribution.边际点纬度, temp_config.attribution
-								.边际点经度
-							], post.icon_url, temp_config, "无人机火场态势","");
-						}
-					})
+					var data = {
+						longtitude:"116.72",
+						latitude:"39.62",
+						fireClass:"3",
+						fireScope:"大",
+						fireInfo:"危急",
+						fireStart:"2021/9/27",
+						fireEnd:"2021/9/28",
+					}
+					var temp_config = $this.get_right_config(data, type,post.name);
+					$this.myCommon.create_marker([temp_config.attribution.边际点纬度, temp_config.attribution
+						.边际点经度
+					], post.icon_url, temp_config, "无人机火场态势","");
+					// this.axios({
+					// 	method: "get",
+					// 	url: post.url,
+					// }).then(function(result) {
+					// 	var datas = result.data.data;
+					// 	for (let i = 0; i < datas.length; i++) {
+					// 		var temp_config = $this.get_right_config(datas[i], type,post.name);
+					// 		$this.myCommon.create_marker([temp_config.attribution.边际点纬度, temp_config.attribution
+					// 			.边际点经度
+					// 		], post.icon_url, temp_config, "无人机火场态势","");
+					// 	}
+					// })
 
 				} else if (type === "卫星热点") {
 					let newDate = new Date();
@@ -266,17 +421,62 @@
 						}
 					});
 				} else if (type === "卫星遥感") {
-					this.axios({
-						method: "get",
-						url: post.url,
-					}).then(function(result) {
-						var datas = result.data.data;
-						for (let i = 0; i < datas.length; i++) {
-							var temp_config = $this.get_right_config(datas[i], type,post.name);
-							$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
-								post.icon_url, temp_config,"卫星遥感","");
-						}
-					});
+					var datas =[
+						{
+							"longitude":115.38,
+							"latitude":39.57,
+							"observationDatetime":"2021/9/27",
+							"strength":1,
+							"strengthLevel":2,
+							"woodland":"1%",
+							"grassland":"2%",
+							"farmland":"3%",
+							"otherland":"4%",
+							"area":100,
+							"credibility":1,
+							"pixelarea":10,
+							"pixelNumber":1,
+							"formattedAddress":"某街道",
+							"rireno":"112233",
+							"visibleLightImageAddress":null,
+							"irimageAddress":null,
+						},
+						{
+							"longitude":117.66,
+							"latitude":40.11,
+							"observationDatetime":"2021/9/27",
+							"strength":1,
+							"strengthLevel":2,
+							"woodland":"1%",
+							"grassland":"2%",
+							"farmland":"3%",
+							"otherland":"4%",
+							"area":100,
+							"credibility":1,
+							"pixelarea":10,
+							"pixelNumber":1,
+							"formattedAddress":"某街道",
+							"rireno":"112233",
+							"visibleLightImageAddress":null,
+							"irimageAddress":null,
+						},
+					]
+					for (let i = 0; i < datas.length; i++) {
+						var temp_config = $this.get_right_config(datas[i], type,post.name);
+						$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
+							post.icon_url, temp_config,"卫星遥感","");
+					}
+					// this.axios({
+					// 	method: "get",
+					// 	url: post.url,
+					// }).then(function(result) {
+					// 	var datas = result.data.data;
+					// 	for (let i = 0; i < datas.length; i++) {
+					// 		var temp_config = $this.get_right_config(datas[i], type,post.name);
+					// 		$this.myCommon.create_marker([temp_config.attribution.纬度, temp_config.attribution.经度],
+					// 			post.icon_url, temp_config,"卫星遥感","");
+					// 	}
+					// });
 
 				} else if(type==="全球植物可燃物分布"){
 					post.qxlayer = L.tileLayer.wms(this.$store.state.AIWEISI_QIXIANG_URL+post.url, {

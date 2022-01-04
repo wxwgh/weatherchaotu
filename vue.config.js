@@ -41,34 +41,4 @@ module.exports = {
 			'window.jQuery': 'jquery'
 		}])
 	},
-	// devServer: {
-	//     proxy: {
-	//         "/weatherserver": {
-	//             target:"http://114.112.161.155:8090",
-	//             changeOrigin: true,
-	//             pathRewrite: {
-	//                 "^/weatherserver": "/weatherserver"
-	//             }
-	//         },
-	// 		"/dcucserver": {
-	// 		    target:"http://114.112.161.157:8877",
-	// 		    changeOrigin: true,
-	// 		    pathRewrite: {
-	// 		        "^/weatherserver": "/dcucserver"
-	// 		    }
-	// 		},
-	//     }
-	// }
-	//天地图跨域问题
-	// devServer:{
-	// 	proxy:{
-	// 		'/tdt': { // 程序中的地址
-	// 			target: 'http://t1.tianditu.com/',
-	// 			changeOrigin: true,
-	// 			pathRewrite: {
-	// 			  '^/tdt': '',
-	// 			}  
-	// 		}
-	// 	}
-	// }
 }

@@ -359,41 +359,84 @@
 						geometry: geometry,
 						spatialQueryMode: "INTERSECT"
 					});
-					var url = this.$store.state.chaotu_iserver_url + '/iserver/services/data-zhpt/rest/data';
-					L.supermap.featureService(url).getFeaturesByGeometry(geometryParam, function(result) {
-						if (result.type == "processCompleted") {
-							var features = result.result.features.features;
-							if(features.length>0){
-								for (let i = 0; i < features.length; i++) {
-									var icon_url = "";
-									if (features[i].properties.T_TYPE == "" || features[i].properties.T_TYPE ==
-										null) {
-										icon_url = task_config.fire_marker_icon_url[0];
-									} else {
-										icon_url = task_config.fire_marker_icon_url[Number(features[i].properties
-											.T_TYPE)];
-									}
-									//创建marker
-									var marker = $this.myCommon.create_marker([features[i].properties.T_LATITUDE,
-										features[i].properties.T_LONGITUDE
-									], icon_url, features[i].properties, "火场范围查询", "");
-									//路径分析
-									$this.scope_path_analyze(features[i],marker,icon_url);
-								}
-							}else{
-								$this.myCommon.get_message("该范围暂无结果");
-								// 关闭loading
-								$this.$store.state.loading = false;
-								return false;
+					var features=[
+						{
+							properties:{
+								T_LATITUDE:26.85,
+								T_LONGITUDE:99.44,
+								T_CONNECT:"某总队",
+								T_TYPE:"2"
 							}
 							
-						} else {
-							$this.myCommon.get_message("查询出错");
-							// 关闭loading
-							$this.$store.state, loading = false;
-							return false;
+						},
+						{
+							properties:{
+								T_LATITUDE:26.65,
+								T_LONGITUDE:100.45,
+								T_CONNECT:"某支队",
+								T_TYPE:"1"
+							}
+						},
+						{
+							properties:{
+								T_LATITUDE:27.26,
+								T_LONGITUDE:100.38,
+								T_CONNECT:"某大中队",
+								T_TYPE:"0"
+							}
 						}
-					});
+					]
+					for (let i = 0; i < features.length; i++) {
+						var icon_url = "";
+						if (features[i].properties.T_TYPE == "" || features[i].properties.T_TYPE ==
+							null) {
+							icon_url = task_config.fire_marker_icon_url[0];
+						} else {
+							icon_url = task_config.fire_marker_icon_url[Number(features[i].properties
+								.T_TYPE)];
+						}
+						//创建marker
+						var marker = $this.myCommon.create_marker([features[i].properties.T_LATITUDE,
+							features[i].properties.T_LONGITUDE
+						], icon_url, features[i].properties, "火场范围查询", "");
+						//路径分析
+						$this.scope_path_analyze(features[i],marker,icon_url);
+					}
+					// var url = this.$store.state.chaotu_iserver_url + '/iserver/services/data-zhpt/rest/data';
+					// L.supermap.featureService(url).getFeaturesByGeometry(geometryParam, function(result) {
+					// 	if (result.type == "processCompleted") {
+					// 		var features = result.result.features.features;
+					// 		if(features.length>0){
+					// 			for (let i = 0; i < features.length; i++) {
+					// 				var icon_url = "";
+					// 				if (features[i].properties.T_TYPE == "" || features[i].properties.T_TYPE ==
+					// 					null) {
+					// 					icon_url = task_config.fire_marker_icon_url[0];
+					// 				} else {
+					// 					icon_url = task_config.fire_marker_icon_url[Number(features[i].properties
+					// 						.T_TYPE)];
+					// 				}
+					// 				//创建marker
+					// 				var marker = $this.myCommon.create_marker([features[i].properties.T_LATITUDE,
+					// 					features[i].properties.T_LONGITUDE
+					// 				], icon_url, features[i].properties, "火场范围查询", "");
+					// 				//路径分析
+					// 				$this.scope_path_analyze(features[i],marker,icon_url);
+					// 			}
+					// 		}else{
+					// 			$this.myCommon.get_message("该范围暂无结果");
+					// 			// 关闭loading
+					// 			$this.$store.state.loading = false;
+					// 			return false;
+					// 		}
+							
+					// 	} else {
+					// 		$this.myCommon.get_message("查询出错");
+					// 		// 关闭loading
+					// 		$this.$store.state, loading = false;
+					// 		return false;
+					// 	}
+					// });
 				}
 			},
 			//范围结果列表点击事件
@@ -516,40 +559,77 @@
 						"starttm": start_time,
 						"endtm": end_time,
 					}
-					this.axios({
-						method: "post",
-						url:right_config.track_url,
-						data: params,
-					}).then(function(result) {
-						var datas = result.data.data;
-						//点数组
-						var points = [];
-						if (datas != null && datas.length > 0) {
-							for (let i = 0; i < datas.length; i++) {
-								if (i == 0) {
-									$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
-										right_config.start_icon_url, datas[i], "无人机轨迹查询", "");
-								} else if (i == datas.length - 1) {
-									$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
-										right_config.end_icon_url, datas[i], "无人机轨迹查询", "");
-								} else {
-									$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
-										right_config.mid_icon_url, datas[i], "无人机轨迹查询", "");
-								}
-								points.push([datas[i].latitude, datas[i].longitude]);
-							}
-							//创建折线路径
-							$this.$store.state.task_config.track_line_layer = L.polyline(points, {
-								color: "blue",
-								weight: 1
-							}).addTo(map);
-							$this.$store.state.loading = false;
+					var datas=[
+						{
+							latitude:30.14,
+							longitude:102.37,
+							tm:"点位1"
+						},
+						{
+							latitude:31.35,
+							longitude:105.44,
+							tm:"点位2"
+						},
+						{
+							latitude:29.99,
+							longitude:105.31,
+							tm:"点位3"
+						},
+					]
+					var points = [];
+					for (let i = 0; i < datas.length; i++) {
+						if (i == 0) {
+							$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+								right_config.start_icon_url, datas[i], "无人机轨迹查询", "");
+						} else if (i == datas.length - 1) {
+							$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+								right_config.end_icon_url, datas[i], "无人机轨迹查询", "");
 						} else {
-							$this.myCommon.get_message("当前时间范围暂无数据");
-							$this.$store.state.loading = false;
+							$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+								right_config.mid_icon_url, datas[i], "无人机轨迹查询", "");
 						}
+						points.push([datas[i].latitude, datas[i].longitude]);
+					}
+					//创建折线路径
+					$this.$store.state.task_config.track_line_layer = L.polyline(points, {
+						color: "blue",
+						weight: 1
+					}).addTo(map);
+					$this.$store.state.loading = false;
+				// 	this.axios({
+				// 		method: "post",
+				// 		url:right_config.track_url,
+				// 		data: params,
+				// 	}).then(function(result) {
+				// 		var datas = result.data.data;
+				// 		//点数组
+				// 		var points = [];
+				// 		if (datas != null && datas.length > 0) {
+				// 			for (let i = 0; i < datas.length; i++) {
+				// 				if (i == 0) {
+				// 					$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+				// 						right_config.start_icon_url, datas[i], "无人机轨迹查询", "");
+				// 				} else if (i == datas.length - 1) {
+				// 					$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+				// 						right_config.end_icon_url, datas[i], "无人机轨迹查询", "");
+				// 				} else {
+				// 					$this.myCommon.create_marker([datas[i].latitude, datas[i].longitude],
+				// 						right_config.mid_icon_url, datas[i], "无人机轨迹查询", "");
+				// 				}
+				// 				points.push([datas[i].latitude, datas[i].longitude]);
+				// 			}
+				// 			//创建折线路径
+				// 			$this.$store.state.task_config.track_line_layer = L.polyline(points, {
+				// 				color: "blue",
+				// 				weight: 1
+				// 			}).addTo(map);
+				// 			$this.$store.state.loading = false;
+				// 		} else {
+				// 			$this.myCommon.get_message("当前时间范围暂无数据");
+				// 			$this.$store.state.loading = false;
+				// 		}
 				
-					})
+				// 	})
 				}
 			},
 			//无人机轨迹清除
@@ -674,8 +754,8 @@
 		position: relative;
 		color: #fff;
 		width: 100%;
-		margin-top:30px;
-		max-height:70%;
+		margin-top:100px;
+		max-height:80%;
 		z-index: 1003;
 		background: rgba(10, 15, 25, .5);
 		border: 1px rgba(31, 126, 252, .6) solid;
@@ -1089,7 +1169,7 @@
 		flex-direction: column;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
-		max-height:91px;
+		max-height:182px;
 		overflow: auto;
 	}
 

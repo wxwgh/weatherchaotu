@@ -14,6 +14,7 @@ import L from 'leaflet';
 import '@supermap/iclient-leaflet';
 //引入海量marker插件
 import './assets/plugins/leaflet.canvas-markers.js';
+
 import 'leaflet-velocity';
 import 'leaflet/dist/leaflet.css';
 //加载自定义脚本
